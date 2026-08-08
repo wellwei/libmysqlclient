@@ -1,0 +1,6 @@
+version = "8.4.6"
+archive = "https://github.com/mysql/mysql-server/archive/refs/tags/mysql-8.4.6.tar.gz"
+sha256 = "d44a93897156a124696e5492971c215981e7f638c2a5c4d773fc586eea213ad1"
+
+# The extraction tool consumes the full archive only on the maintainer side;
+# this repository commits the resulting client-only source tree.

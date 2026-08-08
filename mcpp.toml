@@ -1,0 +1,58 @@
+[package]
+name = "libmysqlclient"
+version = "8.4.6"
+description = "Reduced MySQL C client library built directly with mcpp"
+license = "GPL-2.0-only WITH Universal-FOSS-exception-1.0"
+
+[build]
+default-profile = "release"
+c_standard = "c11"
+include_dirs = [
+  ".",
+  "include",
+  "generated",
+  "extra/rapidjson/include",
+  "libs",
+  "libbinlogevents/include",
+]
+
+# 提取脚本只保留 mysqlclient 上游目标实际合并的翻译单元，因此这里可以用目录 glob。
+# 两种定时器实现由目标平台单独追加，避免 Linux 编译 sys/event.h。
+sources = [
+  "libmysql/*.cc",
+  "sql-common/*.cc",
+  "sql/auth/*.cc",
+  "mysys/*.cc",
+  "!mysys/kqueue_timers.cc",
+  "!mysys/posix_timers.cc",
+  "strings/*.cc",
+  "vio/*.cc",
+  "generated/uca900_ja_tbls.cc",
+  "generated/uca900_zh_tbls.cc",
+]
+
+# my_config.h 由本仓库维护，不能复用带本机安装路径的 CMake 配置快照。
+cxxflags = [
+  "-D_GNU_SOURCE",
+  "-D_USE_MATH_DEFINES",
+  "-D__STDC_FORMAT_MACROS",
+  "-D__STDC_LIMIT_MACROS",
+  "-DLZ4_DISABLE_DEPRECATE_WARNINGS",
+  "-DCLIENT_PROTOCOL_TRACING",
+]
+
+[dependencies.compat]
+openssl = "3.5.1"
+zlib = "1.3.2"
+zstd = "1.5.7"
+
+[target.'cfg(linux)'.build]
+sources = ["mysys/posix_timers.cc"]
+ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
+
+[target.'cfg(macos)'.build]
+sources = ["mysys/kqueue_timers.cc"]
+ldflags = ["-lresolv"]
+
+[targets.mysqlclient]
+kind = "lib"

@@ -1,0 +1,12 @@
+# 上游快照保留原始字节，避免升级时产生无意义的空白差异。
+/extra/** whitespace=-trailing-space
+/generated/** whitespace=-trailing-space
+/include/** whitespace=-trailing-space
+/libbinlogevents/** whitespace=-trailing-space
+/libmysql/** whitespace=-trailing-space
+/libs/** whitespace=-trailing-space
+/mysys/** whitespace=-trailing-space
+/sql-common/** whitespace=-trailing-space
+/sql/** whitespace=-trailing-space
+/strings/** whitespace=-trailing-space
+/vio/** whitespace=-trailing-space
