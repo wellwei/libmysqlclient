@@ -13,6 +13,9 @@ repository is a client-only extraction of upstream tag `mysql-8.4.6` (see
 
 Tags here follow the MySQL client ABI version. The initial tag is `8.4.6`,
 extracted from the official MySQL Server archive recorded in `UPSTREAM.toml`.
+Patch-level package revisions use a fourth numeric segment when the extracted
+mcpp source needs a portability repair without changing the upstream client
+ABI, for example `8.4.6.1`.
 
 ## Maintainer update
 
