@@ -183,6 +183,8 @@ cat > "$repo_root/generated/my_config.h" <<EOF
 #define HAVE_PTHREAD_SETNAME_NP_LINUX 1
 #define HAVE_O_TMPFILE 1
 #define HAVE_MEMALIGN 1
+#define HAVE_FDATASYNC 1
+#define HAVE_DECL_FDATASYNC 1
 #define SIZEOF_LONG 8
 #define SO_EXT ".so"
 #define DEFAULT_TMPDIR P_tmpdir
@@ -238,8 +240,6 @@ cat > "$repo_root/generated/my_config.h" <<EOF
 #define HAVE_UNISTD_H 1
 #define HAVE_FCNTL 1
 #define HAVE_FCNTL_H 1
-#define HAVE_FDATASYNC 1
-#define HAVE_DECL_FDATASYNC 1
 #define HAVE_FSYNC 1
 #define HAVE_FTRUNCATE 1
 #define HAVE_GETUID 1
