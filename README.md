@@ -7,8 +7,12 @@ without shipping the server, router, test suite, or command-line client. The
 package is Form A: the checked-in `mcpp.toml` builds `libmysqlclient.a` directly
 with mcpp. No CMake, Make, or prebuilt library is required by consumers.
 
-Tags follow the MySQL client ABI version. The initial tag is `8.4.6`, extracted
-from the official MySQL Server archive recorded in `UPSTREAM.toml`.
+**Upstream**: [MySQL Server](https://github.com/mysql/mysql-server) — this
+repository is a client-only extraction of upstream tag `mysql-8.4.6` (see
+`UPSTREAM.toml`).
+
+Tags here follow the MySQL client ABI version. The initial tag is `8.4.6`,
+extracted from the official MySQL Server archive recorded in `UPSTREAM.toml`.
 
 ## Maintainer update
 
