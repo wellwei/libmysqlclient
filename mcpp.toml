@@ -25,6 +25,10 @@ sources = [
   "mysys/*.cc",
   "!mysys/kqueue_timers.cc",
   "!mysys/posix_timers.cc",
+  "!mysys/win_timers.cc",
+  "!mysys/my_winfile.cc",
+  "!mysys/my_winerr.cc",
+  "!mysys/my_windac.cc",
   "strings/*.cc",
   "vio/*.cc",
   "generated/uca900_ja_tbls.cc",
@@ -53,6 +57,24 @@ ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
 [target.'cfg(macos)'.build]
 sources = ["mysys/kqueue_timers.cc"]
 ldflags = ["-lresolv"]
+
+# Windows support lives in this staging repo but is NOT published through the
+# mcpp-index descriptor (no windows xpm entry there) until compat.openssl and
+# the connector chain are Windows-ready. Kept so the source tree is complete.
+[target.'cfg(windows)'.build]
+sources = [
+  "mysys/win_timers.cc",
+  "mysys/my_winfile.cc",
+  "mysys/my_winerr.cc",
+  "mysys/my_windac.cc",
+]
+cxxflags = [
+  "-DWIN32_LEAN_AND_MEAN",
+  "-DNOMINMAX",
+  "-D_WIN32_WINNT=0x0A00",
+  "-D_CRT_SECURE_NO_WARNINGS",
+]
+ldflags = ["-lws2_32", "-lsecur32", "-lbcrypt", "-ladvapi32"]
 
 [targets.mysqlclient]
 kind = "lib"
