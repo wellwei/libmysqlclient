@@ -67,6 +67,8 @@
 #define HAVE_MEMALIGN 1
 #define HAVE_FDATASYNC 1
 #define HAVE_DECL_FDATASYNC 1
+#define HAVE_STRLCAT 1
+#define HAVE_STRLCPY 1
 #define SIZEOF_LONG 8
 #define SO_EXT ".so"
 #define DEFAULT_TMPDIR P_tmpdir
