@@ -23,4 +23,11 @@ for forbidden in router storage mysql-test unittest client; do
   }
 done
 
+# Windows 下的 OpenSSL 采用不带旧式 uplink 桥接的静态构建，客户端不能
+# 要求引用包内并未提供的 applink 源文件。
+if grep -q '^#define HAVE_OPENSSL_APPLINK_C 1$' "$repo_root/generated/my_config.h"; then
+  printf 'Windows config must not require OpenSSL applink.c.\n' >&2
+  exit 1
+fi
+
 printf 'libmysqlclient source layout is client-only.\n'

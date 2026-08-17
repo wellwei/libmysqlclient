@@ -38,7 +38,6 @@
 #define HAVE_ALIGNED_MALLOC 1
 #define HAVE_MALLOC_H 1
 #define HAVE_TELL 1
-#define HAVE_OPENSSL_APPLINK_C 1
 #define SIZEOF_LONG 4
 #define SO_EXT ".dll"
 #define DEFAULT_TMPDIR "\\tmp"

@@ -11,11 +11,10 @@ with mcpp. No CMake, Make, or prebuilt library is required by consumers.
 repository is a client-only extraction of upstream tag `mysql-8.4.6` (see
 `UPSTREAM.toml`).
 
-Tags here follow the MySQL client ABI version. The initial tag is `8.4.6`,
-extracted from the official MySQL Server archive recorded in `UPSTREAM.toml`.
-Patch-level package revisions use a fourth numeric segment when the extracted
-mcpp source needs a portability repair without changing the upstream client
-ABI, for example `8.4.6.1`.
+The published package tag is `8.4.6`, extracted from the official MySQL Server
+archive recorded in `UPSTREAM.toml`. It keeps the upstream client ABI version;
+portability fixes are part of this package revision rather than a second
+published tag.
 
 ## Maintainer update
 
