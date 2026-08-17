@@ -75,7 +75,7 @@ cxxflags = [
   "-D_WIN32_WINNT=0x0A00",
   "-D_CRT_SECURE_NO_WARNINGS",
 ]
-ldflags = ["-lws2_32", "-lsecur32", "-lbcrypt", "-ladvapi32"]
+ldflags = ["-lws2_32", "-lsecur32", "-lbcrypt", "-ladvapi32", "-ldnsapi"]
 
 [targets.mysqlclient]
 kind = "lib"
