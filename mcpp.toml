@@ -25,10 +25,6 @@ sources = [
   "mysys/*.cc",
   "!mysys/kqueue_timers.cc",
   "!mysys/posix_timers.cc",
-  "!mysys/win_timers.cc",
-  "!mysys/my_winfile.cc",
-  "!mysys/my_winerr.cc",
-  "!mysys/my_windac.cc",
   "strings/*.cc",
   "vio/*.cc",
   "generated/uca900_ja_tbls.cc",
@@ -51,24 +47,29 @@ zlib = "1.3.2"
 zstd = "1.5.7"
 
 [target.'cfg(linux)'.build]
-sources = ["mysys/posix_timers.cc"]
+sources = [
+  "mysys/posix_timers.cc",
+  "!mysys/win_timers.cc",
+  "!mysys/my_winfile.cc",
+  "!mysys/my_winerr.cc",
+  "!mysys/my_windac.cc",
+]
 ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
 
 [target.'cfg(macos)'.build]
-sources = ["mysys/kqueue_timers.cc"]
+sources = [
+  "mysys/kqueue_timers.cc",
+  "!mysys/win_timers.cc",
+  "!mysys/my_winfile.cc",
+  "!mysys/my_winerr.cc",
+  "!mysys/my_windac.cc",
+]
 ldflags = ["-lresolv"]
 
 # Windows support is published through the mcpp-index descriptor for this
 # client-only package; Connector/C++ has a separate, deferred Windows hook.
 [target.'cfg(windows)'.build]
-sources = [
-  # Upstream adds this POSIX TU only when HAVE_GETPWNAM is available.
-  "!mysys/my_getpwnam.cc",
-  "mysys/win_timers.cc",
-  "mysys/my_winfile.cc",
-  "mysys/my_winerr.cc",
-  "mysys/my_windac.cc",
-]
+sources = ["!mysys/my_getpwnam.cc"]
 cxxflags = [
   "-DWIN32_LEAN_AND_MEAN",
   "-DNOMINMAX",
