@@ -60,9 +60,8 @@ ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
 sources = ["mysys/my_getpwnam.cc", "mysys/kqueue_timers.cc"]
 ldflags = ["-lresolv"]
 
-# Windows support lives in this staging repo but is NOT published through the
-# mcpp-index descriptor (no windows xpm entry there) until compat.openssl and
-# the connector chain are Windows-ready. Kept so the source tree is complete.
+# Windows support is published through the mcpp-index descriptor for this
+# client-only package; Connector/C++ has a separate, deferred Windows hook.
 [target.'cfg(windows)'.build]
 sources = [
   "mysys/win_timers.cc",
