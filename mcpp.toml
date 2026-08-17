@@ -53,6 +53,8 @@ sources = [
   "!mysys/my_winfile.cc",
   "!mysys/my_winerr.cc",
   "!mysys/my_windac.cc",
+  "!vio/viopipe.cc",
+  "!vio/vioshm.cc",
 ]
 ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
 
@@ -63,11 +65,14 @@ sources = [
   "!mysys/my_winfile.cc",
   "!mysys/my_winerr.cc",
   "!mysys/my_windac.cc",
+  "!vio/viopipe.cc",
+  "!vio/vioshm.cc",
 ]
 ldflags = ["-lresolv"]
 
-# Windows support is published through the mcpp-index descriptor for this
-# client-only package; Connector/C++ has a separate, deferred Windows hook.
+# Windows VIO implementations are part of the client archive; Linux/macOS
+# exclude them above because they use native Windows handles.
+# Connector/C++ has a separate, deferred Windows hook.
 [target.'cfg(windows)'.build]
 sources = ["!mysys/my_getpwnam.cc"]
 cxxflags = [
