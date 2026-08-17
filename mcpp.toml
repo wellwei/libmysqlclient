@@ -1,6 +1,6 @@
 [package]
 name = "libmysqlclient"
-version = "8.4.6.1"
+version = "8.4.6"
 description = "Reduced MySQL C client library built directly with mcpp"
 license = "GPL-2.0-only WITH Universal-FOSS-exception-1.0"
 
@@ -25,6 +25,8 @@ sources = [
   "mysys/*.cc",
   "!mysys/kqueue_timers.cc",
   "!mysys/posix_timers.cc",
+  # my_getpwnam.cc is guarded by HAVE_GETPWNAM upstream and is POSIX-only.
+  "!mysys/my_getpwnam.cc",
   "!mysys/win_timers.cc",
   "!mysys/my_winfile.cc",
   "!mysys/my_winerr.cc",
@@ -51,11 +53,11 @@ zlib = "1.3.2"
 zstd = "1.5.7"
 
 [target.'cfg(linux)'.build]
-sources = ["mysys/posix_timers.cc"]
+sources = ["mysys/my_getpwnam.cc", "mysys/posix_timers.cc"]
 ldflags = ["-ldl", "-lpthread", "-lresolv", "-lm"]
 
 [target.'cfg(macos)'.build]
-sources = ["mysys/kqueue_timers.cc"]
+sources = ["mysys/my_getpwnam.cc", "mysys/kqueue_timers.cc"]
 ldflags = ["-lresolv"]
 
 # Windows support lives in this staging repo but is NOT published through the
