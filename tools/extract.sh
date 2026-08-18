@@ -100,6 +100,7 @@ copy_sources "$source_dir/mysys" "$repo_root/mysys" \
   typelib.cc unhex.cc keyring_operations_helper.cc crypt_genhash_impl.cc \
   my_default.cc my_getopt.cc my_kdf.cc my_aes.cc my_sha1.cc my_sha2.cc my_md5.cc \
   my_rnd.cc my_openssl_fips.cc my_aes_openssl.cc my_getpwnam.cc my_time.cc \
+  my_nojemalloc.cc \
   my_systime.cc posix_timers.cc kqueue_timers.cc \
   win_timers.cc my_winfile.cc my_winerr.cc my_windac.cc
 copy_sources "$source_dir/strings" "$repo_root/strings" \
@@ -110,7 +111,7 @@ copy_sources "$source_dir/strings" "$repo_root/strings" \
   ctype-utf8.cc ctype-win1250ch.cc ctype.cc dtoa.cc int2str.cc my_strchr.cc \
   my_strtoll10.cc my_uctype.cc sql_chars.cc str_alloc.cc xml.cc
 copy_sources "$source_dir/vio" "$repo_root/vio" \
-  vio.cc viosocket.cc viossl.cc viosslfactories.cc
+  vio.cc viopipe.cc vioshm.cc viosocket.cc viossl.cc viosslfactories.cc
 
 # my_config.h is intentionally a portable, mcpp-owned configuration rather
 # than a CMake cache containing machine-specific install paths.

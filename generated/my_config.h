@@ -38,6 +38,8 @@
 #define HAVE_ALIGNED_MALLOC 1
 #define HAVE_MALLOC_H 1
 #define HAVE_TELL 1
+/* Windows 使用系统 DNS API 实现 RFC2782 SRV 查询。 */
+#define HAVE_WIN32_DNS_SRV 1
 #define HAVE_OPENSSL_APPLINK_C 1
 #define SIZEOF_LONG 4
 #define SO_EXT ".dll"

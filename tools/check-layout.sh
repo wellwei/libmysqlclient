@@ -7,6 +7,7 @@ required=(
   "$repo_root/include/mysql.h"
   "$repo_root/UPSTREAM.toml"
   "$repo_root/generated/my_config.h"
+  "$repo_root/include/openssl/applink.c"
   "$repo_root/generated/mysql_version.h"
   "$repo_root/generated/mysqld_error.h"
   "$repo_root/generated/uca900_ja_tbls.cc"
