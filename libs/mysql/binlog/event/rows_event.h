@@ -547,6 +547,12 @@ class Table_map_event : public Binary_log_event {
    */
   enum Optional_metadata_field_type {
     SIGNEDNESS = 1,  // UNSIGNED flag of numeric columns
+#if defined(_WIN32) && defined(DEFAULT_CHARSET)
+    // Windows SDK 的 wingdi.h 会定义同名宏；只在声明枚举时临时移除它。
+#pragma push_macro("DEFAULT_CHARSET")
+#undef DEFAULT_CHARSET
+#define MYSQL_RESTORE_DEFAULT_CHARSET_MACRO
+#endif
     DEFAULT_CHARSET, /* Character set of string columns, optimized to
                         minimize space when many columns have the
                         same charset. */
@@ -570,6 +576,11 @@ class Table_map_event : public Binary_log_event {
     COLUMN_VISIBILITY             /* Flag to indicate column visibility
                                      attribute. */
   };
+
+#if defined(MYSQL_RESTORE_DEFAULT_CHARSET_MACRO)
+#pragma pop_macro("DEFAULT_CHARSET")
+#undef MYSQL_RESTORE_DEFAULT_CHARSET_MACRO
+#endif
 
   /**
     Metadata_fields organizes m_optional_metadata into a structured format which
